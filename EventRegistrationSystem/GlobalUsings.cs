@@ -1,0 +1,10 @@
+﻿global using EventRegistrationSystem.Models;
+global using EventRegistrationSystem.Repositories.IRepositories;
+global using EventRegistrationSystem.Repositories;
+global using Microsoft.EntityFrameworkCore;
+global using EventRegistrationSystem.DataAccess;
+global using EventRegistrationSystem.Services;
+global using EventRegistrationSystem.Services.IServices;
+global using EventRegistrationSystem.DTOs.Requests;
+global using EventRegistrationSystem.DTOs.Responses;
+global using System.ComponentModel.DataAnnotations;
