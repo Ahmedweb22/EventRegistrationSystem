@@ -1,4 +1,6 @@
 
+using Scalar.AspNetCore;
+
 namespace EventRegistrationSystem
 {
     public class Program
@@ -7,14 +9,17 @@ namespace EventRegistrationSystem
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
-            //builder.Services.AddScoped<IRepository<Event>, Repository<Event>>();
-            //builder.Services.AddScoped<IRepository<Registration>, Repository<Registration>>();
-            //builder.Services.AddScoped<IEventService, EventService>();
-            //builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+            builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+            builder.Services.AddScoped<IRepository<Event>, Repository<Event>>();
+            builder.Services.AddScoped<IRepository<Registration>, Repository<Registration>>();
+            builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+            builder.Services.AddScoped<IEventService, EventService>();
+            builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
@@ -25,7 +30,8 @@ namespace EventRegistrationSystem
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
-               
+                app.MapScalarApiReference();
+
             }
 
             app.UseHttpsRedirection();

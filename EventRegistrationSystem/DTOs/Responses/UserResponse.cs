@@ -1,10 +1,9 @@
-﻿namespace EventRegistrationSystem.Models
+﻿namespace EventRegistrationSystem.DTOs.Responses
 {
-    public class User
+    public class UserResponse
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
     }
 }
